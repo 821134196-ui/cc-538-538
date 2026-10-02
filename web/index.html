@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>绿园 · 公园树木认养</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+      <path d="M12 2C7 6 5 10 5 13a7 7 0 0 0 14 0c0-3-2-7-7-11z" fill="#2e6d45"/>
+      <rect x="11" y="13" width="2" height="8" rx="1" fill="#7c5c3a"/>
+    </svg>
+    <div>
+      <h1>绿园 · 树木认养</h1>
+      <p class="sub">公园开放树木认养 · 认养状态与专业健康结论分开展示</p>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button data-tab="map" class="tab active">树木地图</button>
+    <button data-tab="calendar" class="tab">养护日历</button>
+    <button data-tab="review" class="tab" id="tab-review">异常复核</button>
+    <button data-tab="mine" class="tab">我的认养</button>
+  </nav>
+  <div class="userbox">
+    <label for="user-select">当前身份</label>
+    <select id="user-select"></select>
+    <button id="bell" class="bell" title="模拟短信通知">🔔<span id="bell-count" class="badge hidden">0</span></button>
+  </div>
+</header>
+
+<main>
+  <!-- 地图 -->
+  <section id="view-map" class="view active">
+    <div class="layout">
+      <div class="card map-card">
+        <div class="card-h"><h2>公园树木地图</h2>
+          <span class="hint">圆点颜色＝健康状态；外圈＝认养状态；虚线箭头＝移栽轨迹</span></div>
+        <svg id="map" viewBox="0 0 200 140" role="img" aria-label="公园树木地图"></svg>
+        <div class="legend" id="map-legend"></div>
+      </div>
+      <aside class="card detail-card" id="tree-detail">
+        <div class="empty">点击地图上的树冠查看树木档案、认养申请与按季节排列的养护记录。</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 养护日历 -->
+  <section id="view-calendar" class="view">
+    <div class="card">
+      <div class="card-h">
+        <h2>养护日历</h2>
+        <div class="cal-controls">
+          <button id="cal-prev">‹</button>
+          <span id="cal-title"></span>
+          <button id="cal-next">›</button>
+        </div>
+      </div>
+      <div id="calendar-body"></div>
+    </div>
+  </section>
+
+  <!-- 异常复核 -->
+  <section id="view-review" class="view">
+    <div class="layout two">
+      <div class="card" id="gardener-queue-card">
+        <div class="card-h"><h2>待核实 · 居民上报</h2><span class="hint">园艺师现场核实后：误报归档 / 提交诊断送主管复核</span></div>
+        <div id="gardener-queue"></div>
+      </div>
+      <div class="card" id="supervisor-queue-card">
+        <div class="card-h"><h2>待主管复核 · 园艺师诊断</h2><span class="hint">认养人无权修改健康结论；批准后状态才生效并联动计划</span></div>
+        <div id="supervisor-queue"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 我的认养 -->
+  <section id="view-mine" class="view">
+    <div class="card">
+      <div class="card-h"><h2>我的认养与年度反馈</h2>
+        <span class="hint">可查看真实执行记录与年度反馈；认养状态不等于健康状态</span></div>
+      <div id="mine-body"></div>
+    </div>
+  </section>
+</main>
+
+<!-- 通知抽屉 -->
+<div id="notif-panel" class="notif-panel hidden"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
